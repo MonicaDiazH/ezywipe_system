@@ -8,7 +8,7 @@ Class Cliente{
 
     public function insertar($cliente, $direccion, $nit, $registro, $giro, $fecha_ingreso, $contacto, $telefono,  $mail, $id_ciudad, $id_condicion_pago, $id_tipo_cliente,$id_user){
         $sql = "INSERT INTO tb_cliente (cliente, direccion, nit, registro, giro, fecha_ingreso, contacto, telefono, mail, id_ciudad, id_condicion_pago, id_user, estado, id_tipo_cliente)
-        VALUES ('$cliente', '$direccion', '$nit', '$registro', '$giro', '$fecha_ingreso', '$contacto', '$telefono', '$mail', '$id_ciudad', '$id_condicion_pago', '$id_user', '1',$id_tipo_cliente)";
+        VALUES ('$cliente', '$direccion', '$nit', '$registro', '$giro', '$fecha_ingreso', '$contacto', '$telefono', '$mail', '$id_ciudad', '$id_condicion_pago', '$id_user', '1','$id_tipo_cliente')";
         //var_dump($sql);
         return ejecutarConsulta($sql);
     }
@@ -24,7 +24,7 @@ Class Cliente{
                 fecha_ingreso = '$fecha_ingreso', 
                 contacto = '$contacto',  
                 telefono = '$telefono', 
-                mail1 = '$mail',  
+                mail = '$mail',  
                 id_ciudad = $id_ciudad, 
                 id_condicion_pago = '$id_condicion_pago', 
                 id_tipo_cliente = '$id_tipo_cliente',

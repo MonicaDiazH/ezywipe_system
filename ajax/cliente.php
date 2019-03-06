@@ -17,45 +17,17 @@ $telefono1 = isset($_POST["telefono1"]) ? limpiarCadena($_POST["telefono1"]) : "
 $mail1 = isset($_POST["mail1"]) ? limpiarCadena($_POST["mail1"]) : "";
 $id_condicion_pago = isset($_POST["id_condicion_pago"]) ? limpiarCadena($_POST["id_condicion_pago"]) : "";
 $id_ciudad = isset($_POST["id_ciudad"]) ? limpiarCadena($_POST["id_ciudad"]) : "";
+$id_tipo_cliente = isset($_POST["id_tipo_cliente"]) ? limpiarCadena($_POST["id_tipo_cliente"]) : "";
 $id_user = $_SESSION['id_usuario'];
 
 switch ($_GET['op']) {
     case 'guardaryeditar':
-        $allowed_mime_types = array('image/png','image/jpeg','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-
-        if(!file_exists($_FILES['doc_registro']['tmp_name']) || !is_uploaded_file($_FILES['doc_registro']['tmp_name']))
-        {
-            $doc_registro=$_POST["registro_actual"];
-        }
-        else
-        {   
-            $ext = explode(".", $_FILES['doc_registro']['name']);
-            if (in_array($_FILES['doc_registro']['type'], $allowed_mime_types))
-            {
-                $doc_registro = $nombre_cliente.'_reg.'.end($ext);
-                move_uploaded_file($_FILES['doc_registro']['tmp_name'], "../files/clientes/" . $doc_registro);
-            }
-        }
-
-        if(!file_exists($_FILES['doc_nit']['tmp_name']) || !is_uploaded_file($_FILES['doc_nit']['tmp_name']))
-        {
-            $doc_nit=$_POST["nit_actual"];
-        }
-        else
-        {  
-            $ext1 = explode(".", $_FILES['doc_nit']['name']);
-            if (in_array($_FILES['doc_nit']['type'], $allowed_mime_types))
-            {
-                $doc_nit = $nombre_cliente.'_nit.'.end($ext1);
-                move_uploaded_file($_FILES['doc_nit']['tmp_name'], "../files/clientes/" . $doc_nit);
-            }
-        }
 
         if (empty($id)) {
-            $rspta = $cliente->insertar($nombre_cliente,$direccion,$nit,$registro,$giro,$fecha_ingreso,$contacto1,$telefono1,$mail1,$id_ciudad,$id_condicion_pago,$id_user);
+            $rspta = $cliente->insertar($nombre_cliente,$direccion,$nit,$registro,$giro,$fecha_ingreso,$contacto1,$telefono1,$mail1,$id_ciudad,$id_condicion_pago,$id_tipo_cliente,$id_user);
             echo $rspta;
         } else {
-            $rspta = $cliente->editar($id,$nombre_cliente,$direccion,$nit,$registro,$giro,$fecha_ingreso,$contacto1,$telefono1,$mail1,$id_ciudad,$id_condicion_pago,$id_user);
+            $rspta = $cliente->editar($id,$nombre_cliente,$direccion,$nit,$registro,$giro,$fecha_ingreso,$contacto1,$telefono1,$mail1,$id_ciudad,$id_condicion_pago,$id_tipo_cliente,$id_user);
             echo $rspta;
         }
         break;

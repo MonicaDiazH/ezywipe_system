@@ -14,7 +14,7 @@ function init() {
     })
 
     //Cargamos los items al select tipo cliente
-    $.post("../ajax/cliente.php?op=selectTipoCliente", function(r){
+    $.post("../ajax/cliente.php?op=selectTipoCliente", function (r) {
         $("#id_tipo_cliente").html(r);
         $('#id_tipo_cliente').selectpicker('refresh');
     })
@@ -66,15 +66,13 @@ function limpiar() {
     $("#contacto1").val("");
     $("#mail1").val("");
     $("#telefono1").val("");
-    $("#contacto2").val("");
-    $("#mail2").val("");
-    $("#telefono2").val("");
     $("#direccion").val("");
-    $("#id_condicion_pago").val("default").selectpicker("refresh")
-    $("#id_pais").val("default").selectpicker("refresh")
-    $("#id_ciudad").val("default").selectpicker("refresh")
-    $("#id_estado").val("default").selectpicker("refresh")
-    
+    $("#id_condicion_pago").val("default").selectpicker("refresh");
+    $("#id_pais").val("default").selectpicker("refresh");
+    $("#id_ciudad").val("default").selectpicker("refresh");
+    $("#id_estado").val("default").selectpicker("refresh");
+    $("#id_tipo_cliente").val("default").selectpicker("refresh")
+
 }
 
 function mostrarForm(flag) {
@@ -170,17 +168,13 @@ function mostrar(id) {
         $("#fecha_ingreso").val(data.fecha_ingreso);
         $("#giro").val(data.giro);
         $("#nit").val(data.nit);
-        $("#contacto1").val(data.contacto1);
-        $("#mail1").val(data.mail1);
-        $("#telefono1").val(data.telefono1);
-        $("#contacto2").val(data.contacto2);
-        $("#mail2").val(data.mail2);
-        $("#telefono2").val(data.telefono2);
+        $("#contacto1").val(data.contacto);
+        $("#mail1").val(data.mail);
+        $("#telefono1").val(data.telefono);
         $("#direccion").val(data.direccion);
         $("#id_condicion_pago").val(data.id_condicion_pago).selectpicker('refresh');
-        //$("#id_pais").val(data.id_pais).trigger('change');
-        //$("#id_estado").val(data.id_estado).trigger('change');
-        //$("#id_ciudad").val(data.id_ciudad).selectpicker('refresh');
+        $("#id_tipo_cliente").val(data.id_tipo_cliente).trigger('change');
+        $("#id_tipo_cliente").val(data.id_tipo_cliente).selectpicker('refresh');
         $("#nitmuestra").text(data.doc_nit);
         $("#registromuestra").text(data.doc_registro);
         $("#registro_actual").val(data.doc_registro);
@@ -200,56 +194,49 @@ function mostrarDetalle(id) {
 
         $("#id").val(data.id);
         $('#tbldetalle').append("<tr><td bgcolor='#F9F9F9' colspan='4' align='center'><h4>GENERAL</h4></td></tr>"
-                                +"<tr>"
-                                    +"<th width='20%'>Cliente:</td>"
-                                    +"<td width='30%'>" + data.cliente +"</td>"
-                                    +"<th width='20%'>Giro:</td>"
-                                    +"<td width='30%'>"+ data.giro +"</td>"
-                                +"</tr>"
-                                +"<tr>"
-                                    +"<th width='20%'>Registro:</td>"
-                                    +"<td width='30%'>" + data.registro +"</td>"
-                                    +"<th width='20%'>NIT:</td>"
-                                    +"<td width='30%'>"+ data.nit +"</td>"
-                                +"</tr>"
-                                +"<tr>"
-                                    +"<th width='20%'>Documento Registro:</td>"
-                                    +"<td width='30%'><a class='abrirreg' target='_blank' href='../files/clientes/"+ data.doc_registro+"'>" + data.doc_registro +"</a></td>"
-                                    +"<th width='20%'>Documento NIT:</td>"
-                                    +"<td width='30%'><a class='abrirnit' target='_blank' href='../files/clientes/"+ data.doc_nit+"'>" + data.doc_nit +"</a></td>"
-                                +"</tr>"
-                                +"<tr><td bgcolor='#F9F9F9' colspan='2' align='center'><h4>CONTACTO PRINCIPAL</h4></td><td bgcolor='#F9F9F9' colspan='2'align='center'><h4>CONCTACTO SECUNDARIO</h4></td></tr>"
-                                +"<tr>"
-                                    +"<th width='20%'>Contacto Principal:</td>"
-                                    +"<td width='30%'>" +data.contacto1 +"</td>"
-                                    +"<th width='20%'>Contacto Secundario:</td>"
-                                    +"<td width='30%'>"+ data.contacto2 +"</td>"
-                                +"</tr>"
-                                +"<tr>"
-                                    +"<th width='20%'>Correo Principal:</td>"
-                                    +"<td width='30%'>" +data.mail1 +"</td>"
-                                    +"<th width='20%'>Correo Secundario:</td>"
-                                    +"<td width='30%'>"+ data.mail2 +"</td>"
-                                +"</tr>"
-                                +"<tr>"
-                                +"<th width='20%'>Teléfono Principal:</td>"
-                                +"<td width='30%'>" +data.telefono1 +"</td>"
-                                +"<th width='20%'>Teléfono Secundario:</td>"
-                                +"<td width='30%'>"+ data.telefono2 +"</td>"
-                            +"</tr>"
-                            +"<tr><td bgcolor='#F9F9F9' colspan='4' align='center'><h4>UBICACIÓN</h4></td></tr>"
-                            +"<tr>"
-                                +"<th width='20%'>País:</td>"
-                                +"<td width='30%'>" +data.pais +"</td>"
-                                +"<th width='20%'>Estado/Departamento:</td>"
-                                +"<td width='30%'>"+ data.nombre_estado +"</td>"
-                            +"</tr>"
-                            +"<tr>"
-                            +"<th width='20%'>Ciudad:</td>"
-                            +"<td width='30%'>" +data.ciudad +"</td>"
-                            +"<th width='20%'>Dirección:</td>"
-                            +"<td width='30%'>"+ data.direccion +"</td>"
-                        +"</tr>");
+            + "<tr>"
+            + "<th width='20%'>Cliente:</td>"
+            + "<td width='30%'>" + data.cliente + "</td>"
+            + "<th width='20%'>Giro:</td>"
+            + "<td width='30%'>" + data.giro + "</td>"
+            + "</tr>"
+            + "<tr>"
+            + "<th width='20%'>Registro:</td>"
+            + "<td width='30%'>" + data.registro + "</td>"
+            + "<th width='20%'>NIT:</td>"
+            + "<td width='30%'>" + data.nit + "</td>"
+            + "</tr>"
+            + "<tr><td bgcolor='#F9F9F9' colspan='2' align='center'><h4>CONTACTO PRINCIPAL</h4></td><td bgcolor='#F9F9F9' colspan='2'align='center'><h4>UBICACIÓN</h4></td></tr>"
+            + "<tr>"
+            + "<th width='20%'>Contacto Principal:</td>"
+            + "<td width='30%'>" + data.contacto + "</td>"
+            + "<th width='20%'>País:</td>"
+            + "<td width='30%'>" + data.pais + "</td>"
+            + "</tr>"
+            + "<tr>"
+            + "<th width='20%'>Correo Principal:</td>"
+            + "<td width='30%'>" + data.mail + "</td>"
+            + "<th width='20%'>Estado/Departamento:</td>"
+            + "<td width='30%'>" + data.nombre_estado + "</td>"
+            + "</tr>"
+            + "<tr>"
+            + "<th width='20%'>Teléfono Principal:</td>"
+            + "<td width='30%'>" + data.telefono + "</td>"
+            + "<th width='20%'>Ciudad:</td>"
+            + "<td width='30%'>" + data.ciudad + "</td>"
+            + "</tr>"
+            + "<tr>"
+            + "<th width='20%'></td>"
+            + "<td width='30%'></td>"
+            + "<th width='20%'>Dirección:</td>"
+            + "<td width='30%'>" + data.direccion + "</td>"
+            + "</tr>"
+            + "<tr>"
+            + "<th width='20%'><a onclick=\"cancelarForm()\">Regresar</a></td>"
+            + "<td width='30%'></td>"
+            + "<th width='20%'></td>"
+            + "<td width='30%'></td>"
+            + "</tr>");
     })
 }
 

@@ -6,14 +6,14 @@ Class TipoCliente{
     public function __construct(){
     }
 
-    public function insertar($tipo_tipo_cliente, $descripcion){
+    public function insertar($tipo_cliente, $descripcion){
         $sql = "INSERT INTO tb_tipo_cliente (tipo, descripcion,estado)
-    VALUES ('$tipo_tipo_cliente','$descripcion', '1')";
+    VALUES ('$tipo_cliente','$descripcion', '1')";
         return ejecutarConsulta($sql);
     }
 
-    public function editar($id,$tipo_tipo_cliente){
-        $sql = "UPDATE tb_tipo_cliente SET tipo = '$tipo_tipo_cliente', descripcion = '$descripcion' WHERE id = $id";
+    public function editar($id,$tipo_cliente,$descripcion){
+        $sql = "UPDATE tb_tipo_cliente SET tipo = '$tipo_cliente', descripcion = '$descripcion' WHERE id = $id";
         return ejecutarConsulta($sql);
     }
 
